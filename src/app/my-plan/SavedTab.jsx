@@ -32,7 +32,6 @@ export default function SavedTab({ items, onRemove }) {
                     key={work.id}
                     className="bg-[#13151b] border border-gray-800/60 rounded-2xl p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
                 >
-                    {/* Workout Info */}
                     <div className="flex items-center gap-4">
                         <div className="relative w-28 h-20 rounded-xl overflow-hidden bg-gray-900 shrink-0">
                             <Image
@@ -66,7 +65,6 @@ export default function SavedTab({ items, onRemove }) {
                         </div>
                     </div>
 
-                    {/* Action Buttons WITHOUT Mark as Done */}
                     <div className="flex items-center gap-3 w-full sm:w-auto justify-end pt-2 sm:pt-0 border-t sm:border-t-0 border-gray-800/80">
                         <Link
                             href={`/woroutdetail/${work.id}`}
