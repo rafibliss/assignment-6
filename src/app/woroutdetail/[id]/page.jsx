@@ -50,7 +50,7 @@ export default function WorkoutDetailPage({ params }) {
             <main className="max-w-7xl mx-auto px-6 py-10 w-full">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
 
-                    <div className="relative w-full h-[450px] md:h-[550px] bg-[#13151b] border border-gray-800/60 rounded-3xl overflow-hidden">
+                    <div className="relative w-full h-112.5 md:h-137.5 bg-[#13151b] border border-gray-800/60 rounded-3xl overflow-hidden">
                         <Image
                             src={workout.image}
                             alt={workout.name}
