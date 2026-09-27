@@ -8,7 +8,7 @@ import { Clock, Flame, Star, Check, X } from 'lucide-react';
 export default function TodaysPlanTab({ items, onRemove }) {
     if (items.length === 0) {
         return (
-            <div className="border border-dashed border-gray-800/80 rounded-2xl p-16 text-center flex flex-col items-center justify-center min-h-[320px] bg-[#101217]/40">
+            <div className="border border-dashed border-gray-800/80 rounded-2xl p-16 text-center flex flex-col items-center justify-center min-h-80 bg-[#101217]/40">
                 <h2 className="font-extrabold text-xl text-white uppercase tracking-tight font-sans mb-2">
                     NOTHING HERE YET
                 </h2>
@@ -78,7 +78,7 @@ export default function TodaysPlanTab({ items, onRemove }) {
                             onClick={() => onRemove(work.id)}
                             className="flex items-center gap-1.5 bg-[#ccff00] hover:bg-[#b8e600] text-black font-extrabold text-xs px-4 py-2.5 rounded-full transition-colors cursor-pointer"
                         >
-                            <Check className="w-3.5 h-3.5 stroke-[3]" />
+                            <Check className="w-3.5 h-3.5 stroke-3" />
                             <span>Mark as Done</span>
                         </button>
 
