@@ -8,7 +8,7 @@ import { Clock, Flame, Star, X } from 'lucide-react';
 export default function SavedTab({ items, onRemove }) {
     if (items.length === 0) {
         return (
-            <div className="border border-dashed border-gray-800/80 rounded-2xl p-16 text-center flex flex-col items-center justify-center min-h-[320px] bg-[#101217]/40">
+            <div className="border border-dashed border-gray-800/80 rounded-2xl p-16 text-center flex flex-col items-center justify-center min-h-80 bg-[#101217]/40">
                 <h2 className="font-extrabold text-xl text-white uppercase tracking-tight font-sans mb-2">
                     NOTHING SAVED YET
                 </h2>
