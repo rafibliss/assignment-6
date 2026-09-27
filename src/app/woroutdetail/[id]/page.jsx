@@ -1,14 +1,10 @@
 import React from 'react';
 import Image from 'next/image';
-import Navbar from '@/app/component/navbar';
 import Footer from '@/app/component/footer';
 
-// Fetch single workout by ID
 const getWorkoutById = async (id) => {
     const res = await fetch('https://api.abcz.workers.dev/api/fitlog');
     const data = await res.json();
-
-    // Find matching item from the API response array
     const workout = data.find((item) => String(item.id) === String(id));
     return workout;
 };
@@ -28,12 +24,9 @@ const WorkoutDetailPage = async ({ params }) => {
     return (
         <div className="min-h-screen bg-[#0a0b0d] text-white flex flex-col justify-between">
             <div>
-                <Navbar />
 
                 <main className="max-w-7xl mx-auto px-6 py-10">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
-
-                        {/* Left Side: Large Hero Image */}
                         <div className="relative w-full h-[450px] md:h-[550px] bg-[#13151b] border border-gray-800/60 rounded-3xl overflow-hidden">
                             <Image
                                 src={workout.image}
@@ -43,11 +36,7 @@ const WorkoutDetailPage = async ({ params }) => {
                                 className="object-cover"
                             />
                         </div>
-
-                        {/* Right Side: Details & Specs */}
                         <div className="flex flex-col">
-
-                            {/* Title & Description */}
                             <h1 className="text-3xl md:text-5xl font-extrabold uppercase tracking-tight font-sans text-white mb-3">
                                 {workout.name}
                             </h1>
@@ -55,7 +44,6 @@ const WorkoutDetailPage = async ({ params }) => {
                                 {workout.description}
                             </p>
 
-                            {/* Muscle Group Badges */}
                             <div className="flex flex-wrap gap-2 mb-6">
                                 {workout.muscleGroups?.map((group, idx) => (
                                     <span
@@ -67,7 +55,6 @@ const WorkoutDetailPage = async ({ params }) => {
                                 ))}
                             </div>
 
-                            {/* Specifications Table Card */}
                             <div className="bg-[#13151b] border border-gray-800/60 rounded-2xl p-5 mb-8">
                                 <div className="divide-y divide-gray-800/60 text-xs md:text-sm">
                                     <div className="flex justify-between py-2.5">
@@ -101,7 +88,6 @@ const WorkoutDetailPage = async ({ params }) => {
                                 </div>
                             </div>
 
-                            {/* Instructions List */}
                             <div className="mb-8">
                                 <h3 className="text-white font-bold text-sm uppercase tracking-wider mb-4">
                                     INSTRUCTIONS
@@ -114,8 +100,6 @@ const WorkoutDetailPage = async ({ params }) => {
                                     ))}
                                 </ol>
                             </div>
-
-                            {/* Action Buttons */}
                             <div className="flex flex-wrap items-center gap-4">
                                 <button
                                     type="button"
