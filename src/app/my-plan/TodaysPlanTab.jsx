@@ -4,8 +4,22 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Clock, Flame, Star, Check, X } from 'lucide-react';
+import { toast } from 'react-toastify';
 
 export default function TodaysPlanTab({ items, onRemove }) {
+    const handleMarkAsDone = (work) => {
+        onRemove(work.id);
+        toast.success(`"${work.name}" marked as completed!`, {
+            style: {
+                backgroundColor: '#13151b',
+                color: '#ccff00',
+                border: '1px solid #1f222a',
+                fontWeight: 'bold',
+            },
+            icon: <Check className="w-5 h-5 text-[#ccff00]" />,
+        });
+    };
+
     if (items.length === 0) {
         return (
             <div className="border border-dashed border-gray-800/80 rounded-2xl p-16 text-center flex flex-col items-center justify-center min-h-80 bg-[#101217]/40">
@@ -75,7 +89,7 @@ export default function TodaysPlanTab({ items, onRemove }) {
 
                         <button
                             type="button"
-                            onClick={() => onRemove(work.id)}
+                            onClick={() => handleMarkAsDone(work)}
                             className="flex items-center gap-1.5 bg-[#ccff00] hover:bg-[#b8e600] text-black font-extrabold text-xs px-4 py-2.5 rounded-full transition-colors cursor-pointer"
                         >
                             <Check className="w-3.5 h-3.5 stroke-3" />
