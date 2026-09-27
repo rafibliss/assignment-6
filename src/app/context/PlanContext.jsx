@@ -5,16 +5,21 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 const PlanContext = createContext();
 
 export const PlanProvider = ({ children }) => {
-    const [todaysPlan, setTodaysPlan] = useState([]);
-    const [savedItems, setSavedItems] = useState([]);
+    const [todaysPlan, setTodaysPlan] = useState(() => {
+        if (typeof window !== 'undefined') {
+            const savedPlan = localStorage.getItem('fitlog_todays_plan');
+            return savedPlan ? JSON.parse(savedPlan) : [];
+        }
+        return [];
+    });
 
-    useEffect(() => {
-        const savedPlan = localStorage.getItem('fitlog_todays_plan');
-        const savedList = localStorage.getItem('fitlog_saved_items');
-        if (savedPlan) setTodaysPlan(JSON.parse(savedPlan));
-        if (savedList) setSavedItems(JSON.parse(savedList));
-    }, []);
-
+    const [savedItems, setSavedItems] = useState(() => {
+        if (typeof window !== 'undefined') {
+            const savedList = localStorage.getItem('fitlog_saved_items');
+            return savedList ? JSON.parse(savedList) : [];
+        }
+        return [];
+    });
     useEffect(() => {
         localStorage.setItem('fitlog_todays_plan', JSON.stringify(todaysPlan));
     }, [todaysPlan]);
@@ -24,21 +29,13 @@ export const PlanProvider = ({ children }) => {
     }, [savedItems]);
 
     const addToPlan = (workout) => {
-        if (todaysPlan.find((item) => item.id === workout.id)) {
-            alert('This exercise is already in today\'s plan!');
-            return false;
+        if (!todaysPlan.find((item) => item.id === workout.id)) {
+            setTodaysPlan((prev) => [...prev, workout]);
         }
-        if (todaysPlan.length >= 5) {
-            alert('Cap of five lifts for today reached! Finish them, then load more.');
-            return false;
-        }
-        setTodaysPlan((prev) => [...prev, workout]);
-        return true;
     };
+
     const addToSaved = (workout) => {
-        if (savedItems.find((item) => item.id === workout.id)) {
-            setSavedItems((prev) => prev.filter((item) => item.id !== workout.id));
-        } else {
+        if (!savedItems.find((item) => item.id === workout.id)) {
             setSavedItems((prev) => [...prev, workout]);
         }
     };
